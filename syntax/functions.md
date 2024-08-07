@@ -83,21 +83,6 @@ func main() {
     console::write_ln(filter([1, 2, 3, 4, 5], func(x) => return x % 2 == 0));
 }
 ```
-we can also pass variable that contains function or declared function
-```
-func main() {
-    let is_even = func(x: int) -> bool {
-        return !is_odd(x);
-    }
-
-    console::write_ln(filter([1, 2, 3, 4, 5], is_even));
-    console::write_ln(filter([1, 2, 3, 4, 5], is_odd));
-}
-
-func is_odd(x: int) -> bool {
-    return x % 2 != 0;
-}
-```
 
 ## Arguments
 *(argument)*
