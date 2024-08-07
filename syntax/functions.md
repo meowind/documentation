@@ -33,8 +33,8 @@ func double(x: int) {
 4. return variable syntax
 ```
 // useful when working with arrays
-func filter(input: int[], value: int) -> let output: int[] {
-    for el in input {
+func filter(array: int[], value: int) -> let output: int[] {
+    for el in array {
         if el == value => output.push_end(el);
     }
 }
