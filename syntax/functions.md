@@ -48,7 +48,7 @@ func example(required_arg: int);
 ```
 func example(optional_arg: int = 50);
 ```
-type on optional arguments can be inferred
+type in optional arguments can be inferred
 ```
 func example(optional_arg = 50);
 ```
