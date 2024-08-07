@@ -69,7 +69,7 @@ func filter(array: int[], condition: func(int) -> bool) -> let output: int[] {
     }
 }
 ```
-we can simplify filter() call with type inference
+we can simplify anonymous function by inferring types
 ```
 func main() {
     console::write_ln(filter([1, 2, 3, 4, 5], func(x) {
@@ -77,7 +77,7 @@ func main() {
     }));
 }
 ```
-we can simplify filter() call even more with inline body
+we can simplify anonymous function even more by using inline body
 ```
 func main() {
     console::write_ln(filter([1, 2, 3, 4, 5], func(x) => return x % 2 == 0));
