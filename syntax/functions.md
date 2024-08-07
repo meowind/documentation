@@ -1,5 +1,8 @@
-## Declaration
-structure: `func <name>([<arg>, ...]) [-> <type> | let <name>: <type>] <block>`\
+
+## Declared Functions
+*(item)*
+
+structure: `func <name>([<arg>, ...]) [-> <type> | let <name>: <type>] $INSIDE_OF_DETAIL ? [<block>] : <block>`\
 modifiers: `pub`
 
 ### Examples:
@@ -36,7 +39,69 @@ func filter(input: int[], value: int) -> let output: int[] {
     }
 }
 ```
+## Anonymous Functions
+*(expression)*
+
+structure: `func([<arg>, ...]) [-> <type> | let <name>: <type>] <block>`
+
+### Examples:
+1. anonymous function in variable
+```
+func main() {
+    let is_even = func(x: int) -> bool {
+        return x % 2 == 0;
+    }
+
+    console::write_ln(is_even(5));
+}
+```
+2. anonymous function as an argument
+```
+func main() {
+    console::write_ln(filter([1, 2, 3, 4, 5], func(x: int) -> bool {
+        return x % 2 == 0;
+    }));
+}
+
+func filter(array: int[], condition: func(int) -> bool) -> let output: int[] {
+    for el in array {
+        if condition(el) => output.push(el);
+    }
+}
+```
+we can simplify filter() call with type inference
+```
+func main() {
+    console::write_ln(filter([1, 2, 3, 4, 5], func(x) {
+        return x % 2 == 0;
+    }));
+}
+```
+we can simplify filter() call even more with inline body
+```
+func main() {
+    console::write_ln(filter([1, 2, 3, 4, 5], func(x) => return x % 2 == 0));
+}
+```
+we can also pass variable that contains function or declared function
+```
+func main() {
+    let is_even = func(x: int) -> bool {
+        return !is_odd(x);
+    }
+
+    console::write_ln(filter([1, 2, 3, 4, 5], is_even));
+    console::write_ln(filter([1, 2, 3, 4, 5], is_odd));
+}
+
+func is_odd(x: int) -> bool {
+    return x % 2 != 0;
+}
+```
+
 ## Arguments
+*(argument)*
+
 structure: `<name>(: <type>) | ([: <type>] = <expr>)`
 
 ### Examples:
@@ -52,7 +117,9 @@ type in optional arguments can be inferred
 ```
 func example(optional_arg = 50);
 ```
-## Calling
+## Calls
+*(expression)*
+
 structure: `<name>([<expr>, ...])`
 
 ### Examples:
